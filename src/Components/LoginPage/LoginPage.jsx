@@ -5,9 +5,7 @@ const LoginPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-
-  
-  const handleSubmit = async (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
     let obj = {
       email: emailRef.current.value,
@@ -20,6 +18,7 @@ const LoginPage = () => {
         obj
       );
       console.log(res);
+       localStorage.setItem('token',res.data.idToken);
     } catch (error) {
       console.log("error", error);
     }
@@ -41,12 +40,11 @@ const LoginPage = () => {
           required
         ></input>
        
-        <button onClick={handleSubmit} type={"submit"}>
+        <button onClick={loginHandler} type={"submit"}>
           Login
         </button>
       </form>
     </div>
   );
 };
-
 export default LoginPage;
