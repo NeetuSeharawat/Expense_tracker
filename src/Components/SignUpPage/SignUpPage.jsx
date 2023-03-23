@@ -40,7 +40,7 @@ const SignUpPage = () => {
           required
         ></input>
         <input
-          type="confirm password"
+          type="password" //encrypted 
           placeholder="Confirm your Password "
           required
           ref={ConfirmPasswordRef}

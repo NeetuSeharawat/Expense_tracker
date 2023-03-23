@@ -24,11 +24,29 @@ const LoginPage = () => {
       console.log("error", error);
     }
   };
+  //Forgot Password
+  const handlerForgotPassword=async (e)=>{
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCSf5df3wQzSx7GQ34HdC2hCFcD4sIETvM",
+        {
+          email: 'neetumorbca@gmail.com',
+          requestType: 'PASSWORD_RESET', 
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log("error:", error);
+    }
+   };
+
 
   // Logout
   const handleLogout =()=>{
     localStorage.removeItem("token");
   }
+
   return (
     <div>
       <form>
@@ -49,6 +67,10 @@ const LoginPage = () => {
         <button onClick={loginHandler} type={"submit"}>
           Login
         </button>
+        <button onClick={handlerForgotPassword} type>
+        Forgot Password
+        </button>
+
         <button onClick={handleLogout}>Logout</button>
       </form>
     </div>
