@@ -46,7 +46,7 @@ const SignUpPage = () => {
           ref={ConfirmPasswordRef}
         ></input>
         <button onClick={handleSubmit} type={"submit"}>
-          Submit
+          SignUP
         </button>
       </form>
     </div>

@@ -25,11 +25,11 @@ const UpdateProfile = () => {
       console.log("error", error);
     }
   };
-
+// get pre-fill the input form with that data show that the user can see his previously entered values (and edit that if needed)
   async function getData() {
     try {
      
-      let res = await axios.post(
+      const res = await axios.post(
         "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCSf5df3wQzSx7GQ34HdC2hCFcD4sIETvM",
         {
           idToken: localStorage.getItem("token"),
@@ -42,13 +42,33 @@ const UpdateProfile = () => {
     } catch (error) {
       console.log("error:", error);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
   }, []);
+  
+  //Verify User Email
+   const handleConfirmEmail =async(e) =>{
+   e.preventDefault();
+    try {
+      const res = await axios.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCSf5df3wQzSx7GQ34HdC2hCFcD4sIETvM",
+        {
+          idToken: localStorage.getItem("token"),
+          requestType: 'VERIFY_EMAIL', 
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log("error:", error);
+    }
+   };
+
+
   return (
     <div>
+      <form>
       <h1>Contact Details</h1>
       <input 
       type="text" placeholder='Enter your Full Name' ref={fullNameRef} required>
@@ -59,8 +79,9 @@ const UpdateProfile = () => {
       <br />
 
       <button onClick={UpdateHandler}>Update</button>
-      <button>Cancel</button>
       
+      <button onClick={handleConfirmEmail}>Confirm Email</button>
+      </form>
     </div>
   )
 }
