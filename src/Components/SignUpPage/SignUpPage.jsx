@@ -29,7 +29,7 @@ const SignUpPage = () => {
         <h1>Sign Up</h1>
         <input
           type="text"
-          placeholder="Enter your Name"
+          placeholder="Enter your EmailAddress"
           ref={emailRef}
           required
         ></input>

@@ -5,6 +5,7 @@ const LoginPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  // login
   const loginHandler = async (e) => {
     e.preventDefault();
     let obj = {
@@ -23,6 +24,11 @@ const LoginPage = () => {
       console.log("error", error);
     }
   };
+
+  // Logout
+  const handleLogout =()=>{
+    localStorage.removeItem("token");
+  }
   return (
     <div>
       <form>
@@ -43,6 +49,7 @@ const LoginPage = () => {
         <button onClick={loginHandler} type={"submit"}>
           Login
         </button>
+        <button onClick={handleLogout}>Logout</button>
       </form>
     </div>
   );
